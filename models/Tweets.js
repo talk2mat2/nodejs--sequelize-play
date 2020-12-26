@@ -9,9 +9,11 @@ module.exports= sequelize.define('tweets',{
         autoIncrement:true,
         AllowNull:false,
         primaryKey:true,
+        
 
     },
     content:Sequelize.STRING(255),
+    userid:Sequelize.STRING(255),
     createdAt:Sequelize.TIME,
     updatedAt:Sequelize.TIME
 })
