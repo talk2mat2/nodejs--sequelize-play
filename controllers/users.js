@@ -2,12 +2,31 @@
 
 const Tweets= require('../models/Tweets')
 const usersmodels = require('../models/usersmodels')
+const {authSchema,registerSchema} = require('../helpers/validation_schema')
 
-
+//we need to inform node js about model relationship
 usersmodels.hasMany(Tweets,{as:"tweets",foreignKey:"userid"})
 Tweets.belongsTo(usersmodels,{as:"user",foreignKey:"userid"})
 
+//onetomanyrelationship
+//user.hasMany(Tweets,{as:"tweeets",foreignkey:"ser.id"})
+//tweets.belongto(User,{as:"user",foreignKey:user.id})
+// const promise= new [Promise((resolve,reject)=>{
+//     let x=true
+//     if(x)resolve(console.log(tru))
+// })]
+
+
+
+
 exports.getAllUsers= async function(req,res){
+
+    const result=   authSchema.validate(req.body)
+    // const result2=registerSchema.validate(req.body)
+    // then we use result.email
+    //result.password to access the output password
+
+
 await usersmodels.findAll({}).then(result=>{
     res.status(200).json(result)
 }).catch(err=>console.log(err))
@@ -44,11 +63,12 @@ exports.registerUser=async function(req,res){
 
 }
 
-
+//create tweets 
 exports.CreateTweets=function(req,res){
     const tweetsMsg="this is testing tweets"
     const user=3
-
+//mmicking reqest from user front end
     Tweets.create({content:tweetsMsg,userid:user}).then(result=>{res.status(200).send(result)}).catch(err=>console.log(err))
 
 }
+

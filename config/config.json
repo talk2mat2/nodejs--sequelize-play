@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": "chibuzo1234",
-    "database": "socialnetwork",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host":"db4free.net",
+   "database":"mat2database",
+   "dialect":"mysql",
+    "username":"martins_c",
+   "password":"chibuzo1234"
   },
   "test": {
     "username": "root",
